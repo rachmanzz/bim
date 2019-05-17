@@ -8,14 +8,19 @@ bim.isFunc = v => !bim.isUndef(v) && bim.typeOf(v, 'function')
 bim.isBool = v => !bim.isUndef(v) && bim.typeOf(v, 'boolean')
 bim.isArray = v => !bim.isUndef(v) && Array.isArray(v)
 bim.isObj = v => !bim.isUndef(v) && !bim.isArray(v) && bim.typeOf(v, 'object')
-bim.size = v => !bim.isUndef(v) && v.length
 bim.index = (v, l, opt) => bim.isFunc(opt) ? v.map(opt).indexOf(l) : v.indexOf(l)
 bim.hasKey = (v, key) => !bim.isUndef(v) && !bim.isUndef(v[key])
 bim.hasIndex = (v, l, opt) => {
     if (!bim.isFunc(opt)) return bim.index(v, l) >= 0 ? true : false
     else return bim.index(v, l, opt) >= 0 ? true : false
 }
-
+bim.size = v => {
+    if(bim.isObj) {
+        let result = 0
+        for(let key in v) v.hasOwnProperty(key) && result++
+        return result
+    } else return !bim.isUndef(v) && v.length
+}
 
 
 
