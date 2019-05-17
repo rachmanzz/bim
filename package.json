@@ -1,0 +1,9 @@
+{
+  "name": "bim",
+  "version": "1.0.0",
+  "description": "javascript library",
+  "main": "dist/bim.js",
+  "author": "Muhammad Abdurrahman (rachman.sd@gmail.com)",
+  "license": "MIT",
+  "private": true
+}
