@@ -21,9 +21,6 @@ bim.size = v => {
         return result
     } else return !bim.isUndef(v) && v.length
 }
-
-
-
 /**
  * @param  {object} v
  * @param  {Array} k
@@ -45,3 +42,5 @@ bim.fReturn = (v, k, d) => {
     return result
 }
 
+
+module.exports = bim
