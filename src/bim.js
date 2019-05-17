@@ -41,6 +41,4 @@ bim.fReturn = (v, k, d) => {
     }
     return result
 }
-
-
 module.exports = bim
