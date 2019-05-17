@@ -8,6 +8,9 @@ bim.isFunc = v => !bim.isUndef(v) && bim.typeOf(v, 'function')
 bim.isBool = v => !bim.isUndef(v) && bim.typeOf(v, 'boolean')
 bim.isArray = v => !bim.isUndef(v) && Array.isArray(v)
 bim.isObj = v => !bim.isUndef(v) && !bim.isArray(v) && bim.typeOf(v, 'object')
+bim.size = v => !bim.isUndef(v) && v.length
+bim.index = (v, l, opt) => bim.isFunc(opt) ? v.map(opt).indexOf(l) : v.indexOf(l)
+
 
 /**
  * @param  {object} v
@@ -29,6 +32,3 @@ bim.fReturn = (v, k, d) => {
     }
     return result
 }
-
-
-
