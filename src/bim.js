@@ -41,4 +41,26 @@ bim.fReturn = (v, k, d) => {
     }
     return result
 }
+
+bim.merge = (d, d2) => {
+    if (bim.isObj(d) && bim.isObj(d2)) {
+        const result = d
+        for(let key in d2) result[key] = d2[key]
+        return result
+    }
+    return undefined
+}
+
+bim.deepMerge = (d, d2) => {
+    if (bim.isObj(d) && bim.isObj(d2)) {
+        const result = d
+        for(let key in d2) {
+            if(bim.isObj(result[key]) && bim.isObj(d2[key])) result[key] = bim.deepMerge(result[key], d2[key])
+            else result[key] = d2[key]
+        }
+        return result
+    }
+    return undefined
+}
+
 module.exports = bim

@@ -2,14 +2,17 @@
   "name": "bim",
   "version": "1.0.0",
   "description": "javascript library",
-  "main": "src/bim.js",
+  "main": "dist/bim.min.js",
   "author": "Muhammad Abdurrahman (rachman.sd@gmail.com)",
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.0.0",
-    "@babel/core": "^7.0.0"
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.4.4",
+    "uglify-js": "^3.5.14"
   },
-  "scripts":{
-    "build": "babel src -d dist"
+  "scripts": {
+    "minifier" : "uglifyjs --compress --mangle -- dist/bim.js > dist/bim.min.js",
+    "build": "babel src -d dist && yarn minifier"
   }
 }
