@@ -1,0 +1,2 @@
+# bim
+javascript library
