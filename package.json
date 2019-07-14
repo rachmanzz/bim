@@ -1,6 +1,6 @@
 {
   "name": "bimn",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "javascript library",
   "main": "dist/bim.min.js",
   "author": "Muhammad Abdurrahman (rachman.sd@gmail.com)",
