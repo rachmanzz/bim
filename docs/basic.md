@@ -1,0 +1,2 @@
+### isUndef
+  ``` isUndef(value)```
