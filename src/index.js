@@ -1,0 +1,2 @@
+export {isUndef, isNotUndef, typeOf, iString, isNumber, isFunc, isBool, isArray, isObj, index, hasKey, hasIndex, size, fReturn, merge, deepMerge, ArrayOpr, ObjectOpr} from './extra'
+export {multiple, divide, modulus, add, subtraction} from './math'
