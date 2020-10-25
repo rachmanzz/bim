@@ -63,28 +63,28 @@ export const ArrayOpr = (a, b, func) => {
     if (isArray(a) && isArray(b) && a.length == b.length) {
         const size = a.length
         const arr = []
-        let isNumber = true
+        let _isNumber = true
         for (let i = 0; i < size; i++) {
             if (isNumber) {
                 if (isNumber(a[i]) && isNumber(b[i])) arr.push(func(a[i], b[i]))
-                else isNumber = false
+                else _isNumber = false
             }
         }
-        if (isNumber) return arr
+        if (_isNumber) return arr
     }
     return null
 }
 export const ObjectOpr = (a, b, func) => {
     if (isObj(a) && isObj(b)) {
         const obj = {}
-        let isNumber = true
+        let _isNumber = true
         for (let key in a) {
             if (isNumber) {
-                if(isNumber(a[key])&& isNumber(b[key])) obj[key] = func(a[key], b[key])
-                else isNumber = false
+                if(isNumber(a[key]) && isNumber(b[key])) obj[key] = func(a[key], b[key])
+                else _isNumber = false
             }
         }
-        if (isNumber) return obj
+        if (_isNumber) return obj
     }
     return null
 }

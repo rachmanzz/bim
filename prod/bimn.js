@@ -117,8 +117,8 @@
       var _isNumber = true;
 
       for (var i = 0; i < _size2; i++) {
-        if (_isNumber) {
-          if (_isNumber(a[i]) && _isNumber(b[i])) arr.push(func(a[i], b[i]));else _isNumber = false;
+        if (isNumber) {
+          if (isNumber(a[i]) && isNumber(b[i])) arr.push(func(a[i], b[i]));else _isNumber = false;
         }
       }
 
@@ -130,15 +130,15 @@
   var ObjectOpr = function ObjectOpr(a, b, func) {
     if (isObj(a) && isObj(b)) {
       var obj = {};
-      var _isNumber2 = true;
+      var _isNumber = true;
 
       for (var key in a) {
-        if (_isNumber2) {
-          if (_isNumber2(a[key]) && _isNumber2(b[key])) obj[key] = func(a[key], b[key]);else _isNumber2 = false;
+        if (isNumber) {
+          if (isNumber(a[key]) && isNumber(b[key])) obj[key] = func(a[key], b[key]);else _isNumber = false;
         }
       }
 
-      if (_isNumber2) return obj;
+      if (_isNumber) return obj;
     }
 
     return null;
