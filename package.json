@@ -13,9 +13,11 @@
     "package-preamble": "^0.1.0",
     "rollup": "^2.32.1",
     "rollup-plugin-babel": "^4.4.0",
+    "tape": "^5.0.1",
     "uglify-js": "^3.5.14"
   },
   "scripts": {
+    "test": "tape 'test/**/*-test.js'",
     "minifier": "uglifyjs --compress --mangle -- prod/bimn.js > dist/bim.min.js"
   },
   "repository": {
