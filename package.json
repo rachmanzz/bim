@@ -7,13 +7,16 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.0.0",
-    "@babel/core": "^7.0.0",
-    "@babel/preset-env": "^7.4.4",
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "@rollup/plugin-babel": "^5.2.1",
+    "package-preamble": "^0.1.0",
+    "rollup": "^2.32.1",
+    "rollup-plugin-babel": "^4.4.0",
     "uglify-js": "^3.5.14"
   },
   "scripts": {
-    "minifier": "uglifyjs --compress --mangle -- dist/bim.js > dist/bim.min.js",
-    "build": "babel src -d dist && yarn minifier"
+    "minifier": "uglifyjs --compress --mangle -- prod/bimn.js > dist/bim.min.js"
   },
   "repository": {
     "type": "git",
@@ -23,7 +26,9 @@
     "javascript",
     "library"
   ],
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "bugs": {
     "url": "https://github.com/rachmanzz/bim/issues"
   },

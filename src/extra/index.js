@@ -1,47 +1,46 @@
-const extra = Object.create(null)
-extra.isUndef = v =>  typeof v === 'undefined'
-extra.isNotUndef = v => !extra.isUndef(v) 
-extra.typeOf = (v, a) => typeof v === a
-extra.iString = v => !extra.isUndef(v) && extra.typeOf(v, 'string')
-extra.isNumber = v => !extra.isUndef(v) && extra.typeOf(v, 'number')
-extra.isFunc = v => !extra.isUndef(v) && extra.typeOf(v, 'function')
-extra.isBool = v => !extra.isUndef(v) && extra.typeOf(v, 'boolean')
-extra.isArray = v => !extra.isUndef(v) && Array.isArray(v)
-extra.isObj = v => !extra.isUndef(v) && !extra.isArray(v) && extra.typeOf(v, 'object')
-extra.index = (v, l, opt) => extra.isFunc(opt) ? v.map(opt).indexOf(l) : v.indexOf(l)
-extra.hasKey = (v, key) => !extra.isUndef(v) && !extra.isUndef(v[key])
+export const _typeOf = (v, a) => typeof v === a
+export const isUndef = v => _typeOf(v, 'undefined')
+export const isNotUndef = v => !isUndef(v)
+export const iString = v => !isUndef(v) && _typeOf(v, 'string')
+export const isNumber = v => !isUndef(v) && _typeOf(v, 'number')
+export const isFunc = v => !isUndef(v) && _typeOf(v, 'function')
+export const isBool = v => !isUndef(v) && _typeOf(v, 'boolean')
+export const isArray = v => !isUndef(v) && Array.isArray(v)
+export const isObj = v => !isUndef(v) && !isArray(v) && _typeOf(v, 'object')
+export const index = (v, l, opt) => isFunc(opt) ? v.map(opt).indexOf(l) : v.indexOf(l)
+export const hasKey = (v, key) => !isUndef(v) && !isUndef(v[key])
 
 
-extra.hasIndex = (v, l, opt) => {
-    if (!extra.isFunc(opt)) return extra.index(v, l) >= 0 ? true : false
-    else return extra.index(v, l, opt) >= 0 ? true : false
+export const hasIndex = (v, l, opt) => {
+    if (!isFunc(opt)) return index(v, l) >= 0 ? true : false
+    else return index(v, l, opt) >= 0 ? true : false
 }
-extra.size = v => {
-    if(extra.isObj) {
+export const size = v => {
+    if(isObj) {
         let result = 0
         for(let key in v) v.hasOwnProperty(key) && result++
         return result
-    } else return !extra.isUndef(v) && v.length
+    } else return !isUndef(v) && v.length
 }
 
-extra.fReturn = (v, k, d) => {
+export const fReturn = (v, k, d) => {
     const result = {}
-    if (extra.isObj(v) && extra.isArray(k)) {
+    if (isObj(v) && isArray(k)) {
       const size = k.length
       
       for (let i = 0 ; i < size; i++) {
           let m = k[i]
-          if(!extra.isUndef(d) && extra.isFunc(d[m])) {
-              if (!extra.isUndef(v[m])) result[m] = d[m](v[m])
+          if(!isUndef(d) && isFunc(d[m])) {
+              if (!isUndef(v[m])) result[m] = d[m](v[m])
               else result[m] = d[m]()
-          } else if(!extra.isUndef(v[m])) result[m] = v[m]
+          } else if(!isUndef(v[m])) result[m] = v[m]
       }
     }
     return result
 }
 
-extra.merge = (d, d2) => {
-    if (extra.isObj(d) && extra.isObj(d2)) {
+export const merge = (d, d2) => {
+    if (isObj(d) && isObj(d2)) {
         const result = d
         for(let key in d2) result[key] = d2[key]
         return result
@@ -49,25 +48,25 @@ extra.merge = (d, d2) => {
     return undefined
 }
 
-extra.deepMerge = (d, d2) => {
-    if (extra.isObj(d) && extra.isObj(d2)) {
+export const deepMerge = (d, d2) => {
+    if (isObj(d) && isObj(d2)) {
         const result = d
         for(let key in d2) {
-            if(extra.isObj(result[key]) && extra.isObj(d2[key])) result[key] = extra.deepMerge(result[key], d2[key])
+            if(isObj(result[key]) && isObj(d2[key])) result[key] = deepMerge(result[key], d2[key])
             else result[key] = d2[key]
         }
         return result
     }
     return undefined
 }
-extra.ArrayOpr = (a, b, func) => {
-    if (extra.isArray(a) && extra.isArray(b) && a.length == b.length) {
+export const ArrayOpr = (a, b, func) => {
+    if (isArray(a) && isArray(b) && a.length == b.length) {
         const size = a.length
         const arr = []
         let isNumber = true
         for (let i = 0; i < size; i++) {
             if (isNumber) {
-                if (extra.isNumber(a[i]) && extra.isNumber(b[i])) arr.push(func(a[i], b[i]))
+                if (isNumber(a[i]) && isNumber(b[i])) arr.push(func(a[i], b[i]))
                 else isNumber = false
             }
         }
@@ -75,13 +74,13 @@ extra.ArrayOpr = (a, b, func) => {
     }
     return null
 }
-extra.ObjectOpr = (a, b, func) => {
-    if (extra.isObj(a) && extra.isObj(b)) {
+export const ObjectOpr = (a, b, func) => {
+    if (isObj(a) && isObj(b)) {
         const obj = {}
         let isNumber = true
         for (let key in a) {
             if (isNumber) {
-                if(extra.isNumber(a[key])&& extra.isNumber(b[key])) obj[key] = func(a[key], b[key])
+                if(isNumber(a[key])&& isNumber(b[key])) obj[key] = func(a[key], b[key])
                 else isNumber = false
             }
         }
@@ -89,5 +88,3 @@ extra.ObjectOpr = (a, b, func) => {
     }
     return null
 }
-
-export default extra
