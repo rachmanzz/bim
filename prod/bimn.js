@@ -206,6 +206,17 @@
     });
     return null;
   }
+  function opr(a, b, oprt) {
+    if (isNotUndef(oprt) && iString(oprt)) {
+      if (oprt === "*") return multiple(a, b);
+      if (oprt === "/") return divide(a, b);
+      if (oprt === "%") return modulus(a, b);
+      if (oprt === "-") return subtraction(a, b);
+      if (oprt === "+") return add(a, b);
+    }
+
+    return null;
+  }
 
   exports.ArrayOpr = ArrayOpr;
   exports.ObjectOpr = ObjectOpr;
@@ -228,6 +239,7 @@
   exports.merge = merge;
   exports.modulus = modulus;
   exports.multiple = multiple;
+  exports.opr = opr;
   exports.size = size;
   exports.subtraction = subtraction;
 
