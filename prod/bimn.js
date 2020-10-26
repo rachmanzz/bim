@@ -117,9 +117,8 @@
       var _isNumber = true;
 
       for (var i = 0; i < _size2; i++) {
-        if (isNumber) {
-          if (isFunc(b) && isUndef(func)) arr.push(b(a[i]));
-          if (isArray(b) && a.length == b.length && isNumber(a[i]) && isNumber(b[i])) arr.push(func(a[i], b[i]));else _isNumber = false;
+        if (_isNumber) {
+          if (isFunc(b) && isUndef(func)) arr.push(b(a[i]));else if (isArray(b) && a.length == b.length && isNumber(a[i]) && isNumber(b[i])) arr.push(func(a[i], b[i]));else _isNumber = false;
         }
       }
 
@@ -134,9 +133,8 @@
       var _isNumber = true;
 
       for (var key in a) {
-        if (isNumber) {
-          if (isFunc(b) && isUndef(func)) obj[key] = b(a[key]);
-          if (isObj(b) && isNumber(a[key]) && isNumber(b[key])) obj[key] = func(a[key], b[key]);else _isNumber = false;
+        if (_isNumber) {
+          if (isFunc(b) && isUndef(func)) obj[key] = b(a[key]);else if (isObj(b) && isNumber(a[key]) && isNumber(b[key])) obj[key] = func(a[key], b[key]);else _isNumber = false;
         }
       }
 

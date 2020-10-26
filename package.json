@@ -18,7 +18,9 @@
   },
   "scripts": {
     "test": "tape 'test/**/*-test.js'",
-    "minifier": "uglifyjs --compress --mangle -- prod/bimn.js > dist/bim.min.js"
+    "minifier": "uglifyjs --compress --mangle -- prod/bimn.js > dist/bim.min.js",
+    "roll": "rollup -c",
+    "prodtest": "npm run roll && npm run minifier && npm run test"
   },
   "repository": {
     "type": "git",
