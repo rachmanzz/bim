@@ -60,13 +60,14 @@ export const deepMerge = (d, d2) => {
     return undefined
 }
 export const ArrayOpr = (a, b, func) => {
-    if (isArray(a) && isArray(b) && a.length == b.length) {
+    if (isArray(a)) {
         const size = a.length
         const arr = []
         let _isNumber = true
         for (let i = 0; i < size; i++) {
             if (isNumber) {
-                if (isNumber(a[i]) && isNumber(b[i])) arr.push(func(a[i], b[i]))
+                if (isFunc(b) && isUndef(func)) arr.push(b(a[i]))
+                if (isArray(b) && a.length == b.length && isNumber(a[i]) && isNumber(b[i])) arr.push(func(a[i], b[i]))
                 else _isNumber = false
             }
         }
@@ -75,12 +76,13 @@ export const ArrayOpr = (a, b, func) => {
     return null
 }
 export const ObjectOpr = (a, b, func) => {
-    if (isObj(a) && isObj(b)) {
+    if (isObj(a)) {
         const obj = {}
         let _isNumber = true
         for (let key in a) {
             if (isNumber) {
-                if(isNumber(a[key]) && isNumber(b[key])) obj[key] = func(a[key], b[key])
+                if (isFunc(b) && isUndef(func)) obj[key]= b(a[key])
+                if(isObj(b) && isNumber(a[key]) && isNumber(b[key])) obj[key] = func(a[key], b[key])
                 else _isNumber = false
             }
         }

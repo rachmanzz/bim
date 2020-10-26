@@ -111,14 +111,15 @@
     return undefined;
   };
   var ArrayOpr = function ArrayOpr(a, b, func) {
-    if (isArray(a) && isArray(b) && a.length == b.length) {
+    if (isArray(a)) {
       var _size2 = a.length;
       var arr = [];
       var _isNumber = true;
 
       for (var i = 0; i < _size2; i++) {
         if (isNumber) {
-          if (isNumber(a[i]) && isNumber(b[i])) arr.push(func(a[i], b[i]));else _isNumber = false;
+          if (isFunc(b) && isUndef(func)) arr.push(b(a[i]));
+          if (isArray(b) && a.length == b.length && isNumber(a[i]) && isNumber(b[i])) arr.push(func(a[i], b[i]));else _isNumber = false;
         }
       }
 
@@ -128,13 +129,14 @@
     return null;
   };
   var ObjectOpr = function ObjectOpr(a, b, func) {
-    if (isObj(a) && isObj(b)) {
+    if (isObj(a)) {
       var obj = {};
       var _isNumber = true;
 
       for (var key in a) {
         if (isNumber) {
-          if (isNumber(a[key]) && isNumber(b[key])) obj[key] = func(a[key], b[key]);else _isNumber = false;
+          if (isFunc(b) && isUndef(func)) obj[key] = b(a[key]);
+          if (isObj(b) && isNumber(a[key]) && isNumber(b[key])) obj[key] = func(a[key], b[key]);else _isNumber = false;
         }
       }
 
@@ -164,6 +166,12 @@
     if (isArgObject(a, b)) return ObjectOpr(a, b, function (a1, b1) {
       return a1 * b1;
     });
+    if (isArray(a) && isNumber(b)) return ArrayOpr(a, function (a1) {
+      return a1 * b;
+    });
+    if (isObj(a) && isNumber(b)) return ObjectOpr(a, function (a1) {
+      return a1 * b;
+    });
     return null;
   }
   function divide(a, b) {
@@ -173,6 +181,12 @@
     });
     if (isArgObject(a, b)) return ObjectOpr(a, b, function (a1, b1) {
       return a1 / b1;
+    });
+    if (isArray(a) && isNumber(b)) return ArrayOpr(a, function (a1) {
+      return a1 / b;
+    });
+    if (isObj(a) && isNumber(b)) return ObjectOpr(a, function (a1) {
+      return a1 / b;
     });
     return null;
   }
@@ -184,6 +198,12 @@
     if (isArgObject(a, b)) return ObjectOpr(a, b, function (a1, b1) {
       return a1 % b1;
     });
+    if (isArray(a) && isNumber(b)) return ArrayOpr(a, function (a1) {
+      return a1 % b;
+    });
+    if (isObj(a) && isNumber(b)) return ObjectOpr(a, function (a1) {
+      return a1 % b;
+    });
     return null;
   }
   function add(a, b) {
@@ -194,6 +214,12 @@
     if (isArgObject(a, b)) return ObjectOpr(a, b, function (a1, b1) {
       return a1 + b1;
     });
+    if (isArray(a) && isNumber(b)) return ArrayOpr(a, function (a1) {
+      return a1 + b;
+    });
+    if (isObj(a) && isNumber(b)) return ObjectOpr(a, function (a1) {
+      return a1 + b;
+    });
     return null;
   }
   function subtraction(a, b) {
@@ -203,6 +229,12 @@
     });
     if (isArgObject(a, b)) return ObjectOpr(a, b, function (a1, b1) {
       return a1 - b1;
+    });
+    if (isArray(a) && isNumber(b)) return ArrayOpr(a, function (a1) {
+      return a1 - b;
+    });
+    if (isObj(a) && isNumber(b)) return ObjectOpr(a, function (a1) {
+      return a1 - b;
     });
     return null;
   }
