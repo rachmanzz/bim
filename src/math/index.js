@@ -14,7 +14,7 @@ function isArgObject(a, b) {
     return isObj(a) && isObj(b)
 }
 
-export const ArrayOpr = (a, b, func) => {
+export function ArrayOpr(a, b, func) {
     if (isArray(a)) {
         const size = a.length
         const arr = []
@@ -30,7 +30,7 @@ export const ArrayOpr = (a, b, func) => {
     }
     return null
 }
-export const ObjectOpr = (a, b, func) => {
+export function ObjectOpr(a, b, func) {
     if (isObj(a)) {
         const obj = {}
         let _isNumber = true
