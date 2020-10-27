@@ -34,6 +34,8 @@ or
     
     alternative of math function, example: opr([1,2], [3, 5], "%") same with modulus([1,2], [3, 5])
 
+check: https://runkit.com/rachmanzz/bimn
+
 # Extra 
 - isUndef(v)
 - isNotUndef(v)
