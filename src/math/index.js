@@ -1,4 +1,6 @@
-import {ArrayOpr, ObjectOpr, isArray, isObj, isNumber, isNotUndef, iString} from '../extra/index'
+import {isArray, isObj, isNumber, isNotUndef, iString, isFunc} from '../extra/index'
+
+
 
 function isArgNumber (a, b) {
     return isNumber(a) && isNumber(b)
@@ -10,6 +12,38 @@ function isArgArray(a, b)  {
 
 function isArgObject(a, b) {
     return isObj(a) && isObj(b)
+}
+
+export const ArrayOpr = (a, b, func) => {
+    if (isArray(a)) {
+        const size = a.length
+        const arr = []
+        let _isNumber = true
+        for (let i = 0; i < size; i++) {
+            if (_isNumber) {
+                if (isFunc(b) && isUndef(func)) arr.push(b(a[i]))
+                else if (isArray(b) && a.length == b.length && isNumber(a[i]) && isNumber(b[i])) arr.push(func(a[i], b[i]))
+                else _isNumber = false
+            }
+        }
+        if (_isNumber) return arr
+    }
+    return null
+}
+export const ObjectOpr = (a, b, func) => {
+    if (isObj(a)) {
+        const obj = {}
+        let _isNumber = true
+        for (let key in a) {
+            if (_isNumber) {
+                if (isFunc(b) && isUndef(func)) obj[key]= b(a[key])
+                else if(isObj(b) && isNumber(a[key]) && isNumber(b[key])) obj[key] = func(a[key], b[key])
+                else _isNumber = false
+            }
+        }
+        if (_isNumber) return obj
+    }
+    return null
 }
 
 

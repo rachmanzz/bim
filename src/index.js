@@ -1,2 +1,2 @@
-export {isUndef, isNotUndef, _typeOf, iString, isNumber, isFunc, isBool, isArray, isObj, index, hasKey, hasIndex, size, fReturn, merge, deepMerge, ArrayOpr, ObjectOpr} from './extra/index'
-export {multiple, divide, modulus, add, subtraction, opr} from './math/index'
+export {isUndef, isNotUndef, _typeOf, iString, isNumber, isFunc, isBool, isArray, isObj, index, hasKey, hasIndex, size, fReturn, merge, deepMerge} from './extra/index'
+export {multiple, divide, modulus, add, subtraction, opr, ArrayOpr, ObjectOpr} from './math/index'
